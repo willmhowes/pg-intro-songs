@@ -32,3 +32,14 @@ pool.on('connect', () => {
 pool.on('error', (error) => {
    console.log('Database error', error);
 });
+
+app.get('/songs', (req, res) => {
+   // retrieve songs from the database
+   pool.query(`SELECT * FROM "songs" ORDER BY "track";`)
+   .then((result) => {
+      res.send(result.rows);
+   }).catch((error) => {
+      console.log(`Error gettings songs`, error);
+      res.sendStatus(500);
+   });
+});
