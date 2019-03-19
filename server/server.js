@@ -19,8 +19,8 @@ const pool = new Pool({
    database: 'atbash-songs', // YOU WILL CHANGE THIS FOR EACH APP
    host: 'localhost',
    port: 5432,
-   max: 10,
-   idleTimeoutMillis: 30000, // 30 seconds before timeout
+   max: 10, // max connections in pool
+   idleTimeoutMillis: 30000, // 30 seconds before timeout on query
 });
 
 // These pool.on's are not required for things to work
