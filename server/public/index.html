@@ -6,11 +6,39 @@
    <title>PG Intro Songs</title>
    <script src="jquery-3.3.1.min.js"></script>
    <script src="client.js"></script>
+   <link href="main.css" type="text/css" rel="stylesheet">
 </head>
 
 <body>
    <main>
       <h1>Songs</h1>
+      <form>
+         <input type="text" id="in-track" placeholder="track">
+         <input type="text" id="in-artist" placeholder="artist">
+         <input type="text" id="in-rank" placeholder="rank">
+         <input type="text" id="in-published" placeholder="release date">
+         <button id="btn-add-song">Add</button>
+      </form>
+
+      <br>
+
+      <section>
+         <table>
+            <thead>
+               <tr>
+                  <th>Track</th>
+                  <th>Artist</th>
+                  <th>Rank</th>
+                  <th>Release Date</th>
+               </tr>
+            </thead>
+
+            <tbody id="songTableBody">
+               <!-- reserved for jQuery -->
+            </tbody>
+         </table>
+      </section>
+
    </main>
 </body>
 

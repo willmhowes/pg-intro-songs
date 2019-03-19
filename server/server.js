@@ -36,10 +36,28 @@ pool.on('error', (error) => {
 app.get('/songs', (req, res) => {
    // retrieve songs from the database
    pool.query(`SELECT * FROM "songs" ORDER BY "track";`)
-   .then((result) => {
-      res.send(result.rows);
-   }).catch((error) => {
-      console.log(`Error gettings songs`, error);
-      res.sendStatus(500);
-   });
+      .then((response) => {
+         res.send(response.rows);
+      }).catch((error) => {
+         console.log(`Error gettings songs`, error);
+         res.sendStatus(500);
+      });
 });
+
+// Add a song to the database
+// Expects a song object on the request body with
+// properties for "track", "artist", "rank", "published"
+app.post('/songs', (req, res) => {
+   let song = req.body;
+   console.log(song);
+   let sqlText = `INSERT INTO "songs" ("rank", "artist", "track", "published")
+   VALUES($1, $2, $3, $4);`;
+
+   pool.query(sqlText, [song.rank, song.artist, song.track, song.published])
+      .then((response) => {
+         res.sendStatus(201);
+      }).catch((error) => {
+         console.log(`Error adding song`, song, error);
+         res.sendStatus(500);
+      });
+})
